@@ -1,9 +1,4 @@
-//
-//  ViewController.swift
-//  computer
-//
-//  Created by 唐辰豪 on 2020/1/24.
-//  Copyright © 2020 唐辰豪. All rights reserved.
+
 //label的0持續出現
 //小數點可以按很多次
 //當運行完一次，要進行下次運算時原本的數字不會消失
@@ -19,6 +14,7 @@ enum Sign {
 }
 
 class ViewController: UIViewController {
+    let btnColor = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)
     let formatter = NumberFormatter()
     var FirstNumber: Double = 0
     var SecondNumber: Double = 0
@@ -29,6 +25,8 @@ class ViewController: UIViewController {
  result_lbl.text = "0"
         formatter.numberStyle = .decimal
         //對數字以10進位的方式來處理
+        //result_lbl.backgroundColor = btnColor
+        
     }
     func CheckNumber (labelText:String) -> (String){
         var stringofNumber: NSNumber
@@ -37,8 +35,9 @@ class ViewController: UIViewController {
         
     }
 
-    
+  
     @IBAction func one_btn(_ sender: UIButton) {
+        
         result_lbl.text! = result_lbl.text! + "1"
         result_lbl.text! = CheckNumber(labelText: result_lbl.text!)
 
@@ -114,25 +113,40 @@ class ViewController: UIViewController {
     }
     
     @IBAction func add_btn(_ sender: UIButton) {
-        FirstNumber = Double(result_lbl.text!)!
-        result_lbl.text! = "0"
+        if CurrentSign != Sign.add{
+        
+            FirstNumber = Double(result_lbl.text!)!
+            result_lbl.text! = "0"
+        }
         CurrentSign = Sign.add
     }
     
     @IBAction func minus_btn(_ sender: UIButton) {
-        FirstNumber = Double(result_lbl.text!)!
-        result_lbl.text! = "0"
+        if CurrentSign != Sign.minus{
+        
+            FirstNumber = Double(result_lbl.text!)!
+            result_lbl.text! = "0"
+            
+        }
         CurrentSign = Sign.minus
     }
     
     @IBAction func multi_btn(_ sender: UIButton) {
-        FirstNumber = Double(result_lbl.text!)!
-        result_lbl.text! = "0"
+        if CurrentSign != Sign.multi{
+        
+            FirstNumber = Double(result_lbl.text!)!
+            result_lbl.text! = "0"
+        
+        }
         CurrentSign = Sign.multi
     }
-    @IBAction func division_btn(_ sender: UIButton) {
-        FirstNumber = Double(result_lbl.text!)!
-        result_lbl.text! = "0"
+    @IBAction func division_btn(_ sender:UIButton) {
+        if CurrentSign != Sign.division{
+        
+            FirstNumber = Double(result_lbl.text!)!
+            result_lbl.text! = "0"
+        
+        }
         CurrentSign = Sign.division
     }
     var finalNumber: Double = 0.0
